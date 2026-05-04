@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz Día de las Madres</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f8f2ee;
+      --card: rgba(255, 255, 255, 0.58);
+      --white: #ffffff;
+      --text: #3a2c2c;
+      --muted: #7b6666;
+      --rose: #b97a7a;
+      --rose-dark: #996060;
+      --gold: #c7a46a;
+      --shadow: 0 20px 50px rgba(101, 71, 71, 0.12);
+      --border: rgba(185, 122, 122, 0.18);
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(185,122,122,0.13), transparent 28%),
+        linear-gradient(135deg, #f8f2ee, #f6ebe6, #fdf9f7);
+      color: var(--text);
+      overflow: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .petals {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      top: -10%;
+      width: 18px;
+      height: 18px;
+      background: radial-gradient(circle at 30% 30%, #fff7f7, #dca3a3 75%);
+      border-radius: 70% 0 70% 0;
+      opacity: 0.45;
+      animation: floatDown linear infinite;
+      filter: blur(0.3px);
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(120vh) translateX(60px) rotate(360deg);
+      }
+    }
+
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.8), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(185,122,122,0.18), transparent 30%),
+        linear-gradient(135deg, #f5ece7, #f8f0eb, #fdf8f6);
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .lock-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .lock-card {
+      width: min(520px, 100%);
+      text-align: center;
+      padding: 55px 28px 40px;
+      border-radius: 32px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.55);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 20px 50px rgba(101, 71, 71, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lock-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(255,255,255,0.22), transparent 45%, rgba(255,255,255,0.12));
+      pointer-events: none;
+    }
+
+    .lock-time {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.2rem, 10vw, 5rem);
+      color: #5d4343;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .lock-date {
+      color: var(--muted);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .lock-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.2rem;
+      color: #604646;
+      margin-bottom: 12px;
+    }
+
+    .lock-subtitle {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1rem;
+      max-width: 360px;
+      margin: 0 auto 28px;
+    }
+
+    .lock-btn,
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      transition: 0.3s ease;
+    }
+
+    .lock-btn,
+    .btn-primary {
+      background: linear-gradient(135deg, #bc7f7f, #d19a9a);
+      color: white;
+      box-shadow: 0 12px 30px rgba(185, 122, 122, 0.26);
+    }
+
+    .lock-btn:hover,
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.72);
+      color: var(--rose-dark);
+      border: 1px solid rgba(185, 122, 122, 0.18);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    .pages-wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      animation: fadeInUp 0.7s ease;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .page-shell {
+      width: min(1000px, 94%);
+      max-height: 92vh;
+      overflow-y: auto;
+      padding: 28px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .page-shell.centered {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: min(760px, 88vh);
+      text-align: center;
+    }
+
+    .page-shell::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .page-shell::-webkit-scrollbar-thumb {
+      background: rgba(185,122,122,0.28);
+      border-radius: 999px;
+    }
+
+    .top-line {
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--rose-dark);
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3.2rem, 8vw, 6rem);
+      line-height: 0.95;
+      font-weight: 700;
+      color: #5e4242;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .subtitle {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-title h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: #5f4545;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .letter-card,
+    .gallery-card,
+    .reasons-card,
+    .final-card,
+    .voice-card-wrap {
+      background: rgba(255,255,255,0.62);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 12px 28px rgba(101, 71, 71, 0.06);
+    }
+
+    .letter-card {
+      padding: 42px 30px;
+      max-width: 860px;
+      margin: 0 auto 24px;
+    }
+
+    .letter-card .date {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .letter-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.2rem;
+      margin-bottom: 22px;
+      color: #604646;
+    }
+
+    .letter-card p {
+      font-size: 1.03rem;
+      line-height: 1.95;
+      color: #5f5252;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      margin-top: 26px;
+      color: var(--rose-dark);
+      font-weight: 600;
+    }
+
+    .gallery-card {
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+
+    .photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      min-height: 220px;
+      background: linear-gradient(135deg, rgba(185,122,122,0.18), rgba(255,255,255,0.8));
+      border: 1px solid rgba(185, 122, 122, 0.14);
+    }
+
+    .photo.large {
+      grid-column: span 7;
+    }
+
+    .photo.small {
+      grid-column: span 5;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: 0.5s ease;
+    }
+
+    .photo:hover img {
+      transform: scale(1.06);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 18px;
+      background: linear-gradient(to top, rgba(55,35,35,0.58), rgba(55,35,35,0));
+      color: white;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    .reasons-card {
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .reasons-flower-layout {
+      position: relative;
+      min-height: 620px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .flower-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 260px;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flower-center img {
+      width: 100%;
+      max-width: 260px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 24px rgba(101, 71, 71, 0.12));
+    }
+
+    .flower-reason {
+      position: absolute;
+      max-width: 220px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(185, 122, 122, 0.16);
+      box-shadow: 0 12px 24px rgba(101, 71, 71, 0.06);
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .flower-reason:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(104, 71, 71, 0.08);
+    }
+
+    .flower-reason h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #5a4242;
+    }
+
+    .flower-reason p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    .flower-r1 { top: 2%; left: 4%; }
+    .flower-r2 { top: 2%; right: 4%; }
+    .flower-r3 { top: 36%; left: 0%; }
+    .flower-r4 { top: 36%; right: 0%; }
+    .flower-r5 { bottom: 2%; left: 6%; }
+    .flower-r6 { bottom: 2%; right: 6%; }
+
+    .voice-card-wrap {
+      padding: 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .voice-card {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(185, 122, 122, 0.14);
+      border-radius: 22px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .voice-card h4 {
+      font-size: 1.2rem;
+      color: #5a4242;
+      margin-bottom: 8px;
+    }
+
+    .voice-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
+      margin-bottom: 16px;
+    }
+
+    .voice-card audio {
+      width: 100%;
+      border-radius: 999px;
+    }
+
+    .final-card {
+      padding: 44px 28px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .final-card h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      color: #5f4343;
+    }
+
+    .final-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.02rem;
+      max-width: 640px;
+      margin: 0 auto 12px;
+    }
+
+    .glow-line {
+      width: 90px;
+      height: 2px;
+      margin: 20px auto;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons.center {
+      justify-content: center;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+
+    /* Animated flower reasons layout */
+    .reasons-card.flower-card {
+      padding: 20px 16px 28px;
+      overflow: hidden;
+    }
+
+    .reasons-flower-layout {
+      position: relative;
+      min-height: 640px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .flower-scene {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 340px;
+      height: 420px;
+      pointer-events: none;
+      filter: drop-shadow(0 0 18px rgba(255, 70, 170, 0.18));
+    }
+
+    .glow-flower {
+      position: absolute;
+      bottom: 36px;
+      width: 110px;
+      height: 300px;
+    }
+
+    .glow-flower.f1 { left: 10px; transform: rotate(-10deg); }
+    .glow-flower.f2 { left: 112px; height: 330px; }
+    .glow-flower.f3 { right: 8px; transform: rotate(10deg); }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      height: 72%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(to top, rgba(255, 50, 170, 0.25), rgba(255, 65, 185, 0.95));
+      box-shadow: 0 0 14px rgba(255, 65, 185, 0.55);
+      animation: swayStem 4s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    .f2 .stem { animation-delay: .3s; }
+    .f3 .stem { animation-delay: .6s; }
+
+    .leaf {
+      position: absolute;
+      width: 34px;
+      height: 18px;
+      border-radius: 100% 0 100% 0;
+      background: radial-gradient(circle at 35% 35%, rgba(255, 120, 205, 0.95), rgba(255, 35, 150, 0.72));
+      box-shadow: 0 0 12px rgba(255, 55, 170, 0.45);
+      animation: pulseGlow 2.8s ease-in-out infinite;
+    }
+
+    .leaf.left { left: 50%; transform-origin: right center; }
+    .leaf.right { left: 50%; transform-origin: left center; }
+
+    .f1 .leaf.l1 { bottom: 78px; transform: translateX(-40px) rotate(-38deg); }
+    .f1 .leaf.r1 { bottom: 118px; transform: translateX(8px) rotate(35deg); }
+    .f1 .leaf.l2 { bottom: 154px; transform: translateX(-44px) rotate(-34deg); }
+    .f1 .leaf.r2 { bottom: 194px; transform: translateX(6px) rotate(32deg); }
+
+    .f2 .leaf.l1 { bottom: 92px; transform: translateX(-42px) rotate(-36deg); }
+    .f2 .leaf.r1 { bottom: 138px; transform: translateX(8px) rotate(34deg); }
+    .f2 .leaf.l2 { bottom: 184px; transform: translateX(-44px) rotate(-32deg); }
+    .f2 .leaf.r2 { bottom: 228px; transform: translateX(8px) rotate(30deg); }
+
+    .f3 .leaf.l1 { bottom: 82px; transform: translateX(-42px) rotate(-34deg); }
+    .f3 .leaf.r1 { bottom: 124px; transform: translateX(8px) rotate(36deg); }
+    .f3 .leaf.l2 { bottom: 164px; transform: translateX(-44px) rotate(-30deg); }
+    .f3 .leaf.r2 { bottom: 205px; transform: translateX(10px) rotate(34deg); }
+
+    .bloom {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 88px;
+      height: 88px;
+      transform: translateX(-50%);
+      animation: swayBloom 4s ease-in-out infinite;
+      transform-origin: center bottom;
+    }
+
+    .f2 .bloom { animation-delay: .3s; }
+    .f3 .bloom { animation-delay: .6s; }
+
+    .petal-bloom {
+      position: absolute;
+      width: 34px;
+      height: 50px;
+      left: 50%;
+      top: 50%;
+      margin-left: -17px;
+      margin-top: -25px;
+      border-radius: 100% 100% 14% 14%;
+      background: radial-gradient(circle at 50% 25%, rgba(255, 165, 222, 0.98), rgba(255, 52, 171, 0.92) 60%, rgba(210, 0, 120, 0.9));
+      box-shadow: 0 0 18px rgba(255, 70, 170, 0.65);
+      transform-origin: 50% 100%;
+      animation: pulseGlow 2.6s ease-in-out infinite;
+    }
+
+    .petal-bloom.p1 { transform: translate(-30px, -6px) rotate(-62deg); }
+    .petal-bloom.p2 { transform: translate(30px, -6px) rotate(62deg); }
+    .petal-bloom.p3 { transform: translate(0px, -24px) rotate(0deg); }
+    .petal-bloom.p4 { transform: translate(-14px, 10px) rotate(-22deg) scale(0.95); }
+    .petal-bloom.p5 { transform: translate(14px, 10px) rotate(22deg) scale(0.95); }
+
+    .center-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 26px;
+      height: 16px;
+      transform: translate(-50%, 0);
+      border-radius: 999px;
+      background: radial-gradient(circle at 50% 40%, #fff7dc, #ffe08b 72%, #f2a83b);
+      box-shadow: 0 0 14px rgba(255, 214, 92, 0.7);
+      z-index: 2;
+    }
+
+    .sparkles span {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 212, 97, 0.95);
+      box-shadow: 0 0 10px rgba(255, 212, 97, 0.95);
+      animation: sparkle 2.8s linear infinite;
+    }
+
+    .sparkles span:nth-child(1) { left: 58px; top: 44px; animation-delay: .2s; }
+    .sparkles span:nth-child(2) { left: 124px; top: 20px; animation-delay: 1.1s; }
+    .sparkles span:nth-child(3) { left: 190px; top: 58px; animation-delay: .7s; }
+    .sparkles span:nth-child(4) { left: 240px; top: 26px; animation-delay: 1.8s; }
+    .sparkles span:nth-child(5) { left: 280px; top: 78px; animation-delay: .5s; }
+    .sparkles span:nth-child(6) { left: 152px; top: 88px; animation-delay: 1.4s; }
+
+    .flower-reason {
+      position: absolute;
+      max-width: 210px;
+      padding: 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(185, 122, 122, 0.16);
+      box-shadow: 0 12px 24px rgba(101, 71, 71, 0.06);
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .flower-reason:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 30px rgba(104, 71, 71, 0.1);
+    }
+
+    .flower-reason h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #5a4242;
+    }
+
+    .flower-reason p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    .flower-r1 { top: 1%; left: 2%; }
+    .flower-r2 { top: 1%; right: 2%; }
+    .flower-r3 { top: 35%; left: 0%; }
+    .flower-r4 { top: 35%; right: 0%; }
+    .flower-r5 { bottom: 2%; left: 4%; }
+    .flower-r6 { bottom: 2%; right: 4%; }
+
+    @keyframes swayStem {
+      0%, 100% { transform: translateX(-50%) rotate(-2deg); }
+      50% { transform: translateX(-50%) rotate(2deg); }
+    }
+
+    @keyframes swayBloom {
+      0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+      50% { transform: translateX(-50%) rotate(3deg); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.18); }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: .2; transform: translateY(0) scale(.8); }
+      50% { opacity: 1; transform: translateY(-8px) scale(1.2); }
+    }
+
+    @media (max-width: 900px) {
+      .photo.large,
+      .photo.small {
+        grid-column: span 12;
+      }
+
+      .reasons-flower-layout {
+        min-height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .flower-center,
+      .flower-reason {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        transform: none;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+
+      .flower-center {
+        width: 220px;
+        height: 220px;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        overflow: auto;
+      }
+
+      .pages-wrap {
+        height: auto;
+        min-height: 100vh;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+        display: none;
+        padding: 18px 10px;
+      }
+
+      .page.active {
+        display: flex;
+      }
+
+      .page-shell {
+        width: 100%;
+        max-height: none;
+        overflow-y: visible;
+        padding: 22px 16px;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+      }
+
+      .lock-card {
+        padding: 45px 22px 34px;
+      }
+
+      .subtitle,
+      .letter-card p,
+      .final-card p,
+      .section-title p {
+        font-size: 0.96rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="petals" id="petals"></div>
+
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <div class="lock-time" id="lockTime">12:00</div>
+      <div class="lock-date" id="lockDate">Sunday, May 12</div>
+      <h2 class="lock-title">Feliz Día de las Madres</h2>
+      <p class="lock-subtitle">
+        Una pequeña sorpresa hecha con amor, recuerdos y gratitud.
+      </p>
+      <button class="lock-btn" onclick="unlockGift()">Abrir regalo</button>
+    </div>
+  </div>
+
+  <div class="pages-wrap">
+    <!-- PAGE 1 -->
+    <section class="page active" id="page1">
+      <div class="page-shell centered">
+        <p class="top-line">Para el corazón más hermoso</p>
+        <h1>Feliz<br>Día de las Madres</h1>
+        <p class="subtitle">
+          Un pequeño espacio hecho con amor, gratitud y cada recuerdo bonito 
+          que me hace darme cuenta de lo afortunado que soy de tenerte.
+        </p>
+
+        <div class="nav-buttons center">
+          <button class="btn btn-primary" onclick="goToPage(2)">Comenzar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page" id="page2">
+      <div class="page-shell">
+        <div class="section-title">
+          <h2>Una carta para ti</h2>
+          <p>Hay cosas demasiado importantes como para no decirlas, así que esto es para ti.</p>
+        </div>
+
+        <div class="letter-card">
+          <div class="date">Día de las Madres</div>
+          <h3>Querida mamá,</h3>
+
+          <p>
+            Gracias por todo lo que has hecho por mí — por todo el tiempo, esfuerzo y paciencia que 
+            has puesto en criarme. Sé que no siempre ha sido fácil, y no lo digo lo suficiente, pero 
+            de verdad lo aprecio.
+          </p>
+
+          <p>
+            Siempre has estado ahí cuando te he necesitado, ya sea para darme consejos, ayudarme o 
+            simplemente apoyarme. Mucho de lo que soy hoy es gracias a ti, y no lo doy por hecho.
+          </p>
+
+          <p>
+            Puede que no siempre lo diga, pero me doy cuenta de todo lo que haces. Has hecho mi vida 
+            más fácil de muchas maneras, incluso más de las que probablemente me doy cuenta, y de 
+            verdad te lo agradezco.
+          </p>
+
+          <p>
+           Espero que tengas un gran Día de las Madres y que por fin puedas relajarte un poco. 
+          </p>
+
+          <p class="signature">Te Amo, <br>Tu primer hijo</p>
+        </div>
+
+        <div class="voice-card-wrap">
+          <div class="voice-card">
+            <h4>Misael</h4>
+            <p>Toca para escuchar mi mensaje para ti.</p>
+            <audio controls>
+              <source src="Leo.mp4" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goToPage(1)">Atrás</button>
+          <button class="btn btn-primary" onclick="goToPage(3)">Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="page" id="page3">
+      <div class="page-shell">
+        <div class="section-title">
+          <h2>Hermosos recuerdos</h2>
+          <p>Aquí hay algunos recuerdos de tus bebes.</p>
+        </div>
+
+        <div class="gallery-card">
+          <div class="gallery-grid">
+            <div class="photo large">
+              <img src="leo.jpg" alt="Memory 1">
+              <div class="photo-overlay">El primer bebe de la familia</div>
+            </div>
+
+            <div class="photo small">
+              <img src="mateo.JPG" alt="Memory 2">
+              <div class="photo-overlay">Chinos de Mama</div>
+            </div>
+
+            <div class="photo small">
+              <img src="geo.JPG" alt="Memory 3">
+              <div class="photo-overlay">La primera y única niña</div>
+            </div>
+
+            <div class="photo large">
+              <img src="family.JPG" alt="Memory 4">
+              <div class="photo-overlay">Mamá y sus bebes, siempre juntos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="voice-card-wrap">
+          <div class="voice-card">
+            <h4>Mateo</h4>
+            <p>Un mensaje de voz especial solo para ti.</p>
+            <audio controls>
+              <source src="Mateo.mp4" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goToPage(2)">Atrás</button>
+          <button class="btn btn-primary" onclick="goToPage(4)">Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4 -->
+    <section class="page" id="page4">
+      <div class="page-shell">
+        <div class="section-title">
+          <h2>Razones por las que eres tan especial</h2>
+          <p>Solo algunas de las muchas razones por las que tu amor lo significa todo.</p>
+        </div>
+
+        <div class="reasons-card flower-card">
+          <div class="reasons-flower-layout">
+            <div class="flower-reason flower-r1">
+              <h4>Has tenido que con todos nosotros</h4>
+              <p>Criarme ya era mucho… pero tuviste que con todos nosotros, y eso lo dice todo.</p>
+            </div>
+
+            <div class="flower-reason flower-r2">
+              <h4>Has hecho más de lo que notamos</h4>
+              <p>Muchas de las cosas que haces pueden pasar desapercibidas, pero no dejan de valorarse.</p>
+            </div>
+
+            <div class="flower-reason flower-r3">
+              <h4>Siempre estás ahí</h4>
+              <p>Incluso cuando las cosas no son perfectas entre nosotros, sigues estando cuando más importa.</p>
+            </div>
+
+            <div class="flower-scene" aria-hidden="true">
+              <div class="sparkles">
+                <span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+
+              <div class="glow-flower f1">
+                <div class="stem"></div>
+                <div class="leaf left l1"></div>
+                <div class="leaf right r1"></div>
+                <div class="leaf left l2"></div>
+                <div class="leaf right r2"></div>
+                <div class="bloom">
+                  <div class="petal-bloom p1"></div>
+                  <div class="petal-bloom p2"></div>
+                  <div class="petal-bloom p3"></div>
+                  <div class="petal-bloom p4"></div>
+                  <div class="petal-bloom p5"></div>
+                  <div class="center-dot"></div>
+                </div>
+              </div>
+
+              <div class="glow-flower f2">
+                <div class="stem"></div>
+                <div class="leaf left l1"></div>
+                <div class="leaf right r1"></div>
+                <div class="leaf left l2"></div>
+                <div class="leaf right r2"></div>
+                <div class="bloom">
+                  <div class="petal-bloom p1"></div>
+                  <div class="petal-bloom p2"></div>
+                  <div class="petal-bloom p3"></div>
+                  <div class="petal-bloom p4"></div>
+                  <div class="petal-bloom p5"></div>
+                  <div class="center-dot"></div>
+                </div>
+              </div>
+
+              <div class="glow-flower f3">
+                <div class="stem"></div>
+                <div class="leaf left l1"></div>
+                <div class="leaf right r1"></div>
+                <div class="leaf left l2"></div>
+                <div class="leaf right r2"></div>
+                <div class="bloom">
+                  <div class="petal-bloom p1"></div>
+                  <div class="petal-bloom p2"></div>
+                  <div class="petal-bloom p3"></div>
+                  <div class="petal-bloom p4"></div>
+                  <div class="petal-bloom p5"></div>
+                  <div class="center-dot"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flower-reason flower-r4">
+              <h4>No siempre lo hemos hecho fácil</h4>
+              <p>Pero aun así siempre has estado con nosotros, pase lo que pase.</p>
+            </div>
+
+            <div class="flower-reason flower-r5">
+              <h4>Te mereces todo</h4>
+              <p>Por todo lo que has hecho y por todo lo que eres, te mereces muchísimo amor y felicidad.</p>
+            </div>
+
+            <div class="flower-reason flower-r6">
+              <h4>Al final del día, sigues siendo mi mamá</h4>
+              <p>Y eso significa más que cualquier otra cosa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="voice-card-wrap">
+          <div class="voice-card">
+            <h4>Georgina</h4>
+            <p>Un mensaje más lleno de cariño.</p>
+            <audio controls>
+              <source src="GEO.mp4" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goToPage(3)">Atrás</button>
+          <button class="btn btn-primary" onclick="goToPage(5)">Siguiente</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5 -->
+    <section class="page" id="page5">
+      <div class="page-shell centered">
+        <div class="final-card">
+          <h3>Siempre serás amada</h3>
+          <div class="glow-line"></div>
+          <p>
+            Ningún regalo podría medir completamente lo agradecido que estoy contigo. 
+            Esta página es solo un pequeño reflejo de un amor muy grande.
+          </p>
+          <p>
+            Feliz Día de las Madres a la mujer cuyo amor ha formado mi mundo de la manera más hermosa.
+          </p>
+          <p><strong>Te amo para siempre, mamá.</strong></p>
+        </div>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" onclick="goToPage(4)">Atrás</button>
+          <button class="btn btn-primary" onclick="goToPage(1)">Volver al inicio</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function unlockGift() {
+      document.getElementById("lockScreen").classList.add("hide");
+
+      const music = document.getElementById("bgMusic");
+      if (music) {
+        music.volume = 0.5;
+        music.play().catch(() => {
+          // Some browsers block autoplay until the user interacts again.
+        });
+      }
+    }
+
+    function updateLockTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      const date = now.toLocaleDateString("es-ES", {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+      });
+
+      document.getElementById("lockTime").textContent = time;
+      document.getElementById("lockDate").textContent = date;
+    }
+
+    updateLockTime();
+    setInterval(updateLockTime, 1000);
+
+    function goToPage(pageNumber) {
+      const pages = document.querySelectorAll(".page");
+      pages.forEach(page => page.classList.remove("active"));
+
+      const nextPage = document.getElementById("page" + pageNumber);
+      if (nextPage) {
+        nextPage.classList.add("active");
+
+        const shell = nextPage.querySelector(".page-shell");
+        if (shell) shell.scrollTop = 0;
+      }
+
+      const bgMusic = document.getElementById("bgMusic");
+
+      document.querySelectorAll("audio").forEach(audio => {
+        if (audio !== bgMusic) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      const currentPage = document.querySelector(".page.active");
+      if (!currentPage) return;
+
+      const currentId = currentPage.id;
+      const currentNumber = parseInt(currentId.replace("page", ""));
+
+      if (event.key === "ArrowRight" && currentNumber < 5) {
+        goToPage(currentNumber + 1);
+      }
+
+      if (event.key === "ArrowLeft" && currentNumber > 1) {
+        goToPage(currentNumber - 1);
+      }
+    });
+
+    const petalsContainer = document.getElementById("petals");
+
+    for (let i = 0; i < 22; i++) {
+      const petal = document.createElement("span");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = (8 + Math.random() * 8) + "s";
+      petal.style.animationDelay = Math.random() * 8 + "s";
+      petal.style.opacity = (0.18 + Math.random() * 0.4).toFixed(2);
+      petal.style.transform = `scale(${0.7 + Math.random() * 1}) rotate(${Math.random() * 360}deg)`;
+      petalsContainer.appendChild(petal);
+    }
+
+
+    const bgMusic = document.getElementById("bgMusic");
+    let wasMusicPlayingBeforeVoice = false;
+
+    document.querySelectorAll("audio").forEach(audio => {
+      if (audio !== bgMusic) {
+        audio.addEventListener("play", () => {
+          if (!bgMusic) return;
+          wasMusicPlayingBeforeVoice = !bgMusic.paused;
+          bgMusic.pause();
+        });
+
+        audio.addEventListener("pause", () => {
+          if (!bgMusic) return;
+          if (!audio.ended && wasMusicPlayingBeforeVoice) {
+            bgMusic.play().catch(() => {});
+          }
+        });
+
+        audio.addEventListener("ended", () => {
+          if (!bgMusic) return;
+          if (wasMusicPlayingBeforeVoice) {
+            bgMusic.play().catch(() => {});
+          }
+        });
+      }
+    });
+
+  </script>
+</body>
+</html>
